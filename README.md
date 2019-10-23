@@ -1,23 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-docker-cloud app on Google Kubernetes Engine
 
-## Available Scripts
+This project was build to run on Google Kubernetes Engine
 
-In the project directory, you can run:
+## Building the react app
 
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
+Clone this repository and follow these steps
+1  `yarn build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,43 +15,43 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Deploying on Docker
+On the terminal enter
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1.  Make your image <br/>
+  `DP=[YOUR_DOCKER_ID]/[NAME_YOUR_IMAGE:1.0]`
+2. `docker run build`
+3. Run the  <br/>
+`docker run -d -p 8000:80 $DP`
+4. Login your docker account <br/>
+`docker login --username=[YOUR_DOCKER_ID]` <br/>
+5. `docker push $DP` <br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+##Connecting to Google Cloud Platform
+1. Initialize the folder to be a gcloud repo <br/>
+`gcloud init`
+2. Login using <br/>
+`gcloud login`
+Or `gcloud config auth login`
+3. Choose a project <br/>
+`gcloud config set project [PROJECT_ID]`
+4. Pick a region <br/>
+`gcloud config set compute/region [COMPUTE_REGION]`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+###Deploying on Kubernetes Engine
+1. Create a container cluster <br/>
+`gcloud container clusters create [CLUSTER_NAME]`
+2. Create a Kubernetes deployment image <br/>
+`kubectl create deployment [DEPLOYMENT_NAME e.g test] --image $DP`
+3. Expose your deployment<br/>
+`kubectl expose deployment [DEPLOYMENT_IMAGE_NAME] --type LoadBalancer --port 80 --target-port 80`
+4. To find the external IP address of your app <br/>
+`kubectl get services`
 
-## Learn More
+###Your Application should great
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+:thumbs-up:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# react-docker-cloud
