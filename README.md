@@ -28,7 +28,7 @@ On the terminal enter
 5. `docker push $DP` <br/>
 
 
-##Connecting to Google Cloud Platform
+## Connecting to Google Cloud Platform
 1. Initialize the folder to be a gcloud repo <br/>
 `gcloud init`
 2. Login using <br/>
@@ -39,7 +39,7 @@ Or `gcloud config auth login`
 4. Pick a region <br/>
 `gcloud config set compute/region [COMPUTE_REGION]`
 
-###Deploying on Kubernetes Engine
+### Deploying on Kubernetes Engine
 1. Create a container cluster <br/>
 `gcloud container clusters create [CLUSTER_NAME]`
 2. Create a Kubernetes deployment image <br/>
@@ -49,7 +49,7 @@ Or `gcloud config auth login`
 4. To find the external IP address of your app <br/>
 `kubectl get services`
 
-###Your Application should great
+### Your Application should great
 
 :thumbs-up:
 
